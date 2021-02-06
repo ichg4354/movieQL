@@ -1,13 +1,15 @@
+import db from "./db";
+
 const resolver = {
   Query: {
-    person: () => Luis,
+    people: () => db,
+    person: (_, arg) => getPersonById(arg.id),
   },
 };
 
-const Luis = {
-  name: "LUIS",
-  age: 22,
-  gender: "Male",
+const getPersonById = (id) => {
+  const selected = db.filter((person) => person.id === id);
+  return selected[0];
 };
 
 export default resolver;
