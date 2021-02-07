@@ -1,40 +1,61 @@
-const db = [
+let db = [
   {
     id: 1,
-    name: "Luis",
-    age: 21,
-    gender: "Male",
+    title: "Pirate",
+    score: 21,
   },
   {
     id: 2,
-    name: "Matt",
-    age: 28,
-    gender: "Male",
+    title: "of",
+    score: 28,
   },
   {
     id: 3,
-    name: "Will",
-    age: 15,
-    gender: "Female",
+    title: "the",
+    score: 15,
   },
   {
     id: 4,
-    name: "Ben",
-    age: 12,
-    gender: "Male",
+    title: "Carribian",
+    score: 12,
   },
   {
     id: 5,
-    name: "James",
-    age: 23,
-    gender: "Male",
+    title: "what",
+    score: 23,
   },
   {
     id: 6,
-    name: "Hayden",
-    age: 11,
-    gender: "Female",
+    title: "da fuq",
+    score: 11,
   },
 ];
+
+export const getMovies = () => db;
+
+export const getById = (id) => {
+  const Selected = db.filter((person) => person.id === id);
+  return Selected[0];
+};
+
+export const removeById = (id) => {
+  const Cleaned = db.filter((person) => person.id !== id);
+  if (db.length > Cleaned.length) {
+    db = Cleaned;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const addMovie = (title, score) => {
+  const newMovie = {
+    id: db.length + 1,
+    title: title,
+    score: score,
+  };
+  db.push(newMovie);
+  return db;
+};
 
 export default db;
